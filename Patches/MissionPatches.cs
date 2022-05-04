@@ -19,14 +19,9 @@ namespace MissionMultipliers.Patches
 #endif      
          
         public static class DeliverGoodPatch
-        {
-            // transpiler, if you can figure it out
+        {            
             static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
-                if (Main.enabled)
-                    FileLog.Log("Enabled");
-                else FileLog.Log("Not enabled");
-
                 var codes = new List<CodeInstruction>(instructions);
 
                 int insertionIndex = -1;
@@ -42,39 +37,16 @@ namespace MissionMultipliers.Patches
                         FileLog.Log("Next opcode is " + codes[i + 1].opcode);
 #endif
                         break;
-                    }
-
-
-                    /*
-                    if (codes[i].opcode == OpCodes.Ldsfld)
-                    {
-                        FileLog.Log("Ldsfld");
-                        FileLog.Log(codes[i].operand.ToString());
-                    }
-                    */
-                    
-                    //break;
+                    }                    
                 }
 
                 var instructionsToInsert = new List<CodeInstruction>();
 #if DEBUG
                 FileLog.Log("Creating insertion list.");
                 FileLog.Log("Creating first instruction.");
+                FileLog.Log("MissionPayMultiplier is " + (int)Main.settings.MissionPayMultiplier);
 #endif
-                //instructionsToInsert.Add(new CodeInstruction(OpCodes.Ldc_I4, 10));  //works
-
-                //instructionsToInsert.Add(new CodeInstruction(OpCodes.Ldc_R4, Main.settings.MissionPayMultiplier)); crashes                
-                //instructionsToInsert.Add(new CodeInstruction(OpCodes.Ldc_R4, 10.50));  crashes
-                //instructionsToInsert.Add(new CodeInstruction(OpCodes.Ldc_I4, (int)Main.settings.MissionPayMultiplier)); crashes
-
-                float f = 10;
-                FileLog.Log("MissionPayMultiplier is " + (int)f);                
-                instructionsToInsert.Add(new CodeInstruction(OpCodes.Ldc_I4, (int)f));
-#if DEBUG
-                //FileLog.Log("MissionPayMultiplier is " + (int)Main.settings.MissionPayMultiplier); //crashes
-#endif
-                //instructionsToInsert.Add(new CodeInstruction(OpCodes.Ldc_I4, (int)Main.settings.MissionPayMultiplier));
-
+                instructionsToInsert.Add(new CodeInstruction(OpCodes.Ldc_I4, (int)Main.settings.MissionPayMultiplier));
 #if DEBUG
                 FileLog.Log("Creating second instruction.");
 #endif
@@ -93,8 +65,7 @@ namespace MissionMultipliers.Patches
 #endif
                 }
 
-                return codes;
-                //return as enumerator;?
+                return codes;                
             }
         }
     }
