@@ -19,30 +19,22 @@ namespace MissionMultipliers
 
         public static bool Load(UnityModManager.ModEntry modEntry)
         {
+            new Harmony(modEntry.Info.Id).PatchAll(Assembly.GetExecutingAssembly());
+
             mod = modEntry;
 
             settings = MissionMultiplierSettings.Load<MissionMultiplierSettings>(modEntry);
 
             modEntry.OnToggle = OnToggle;
             modEntry.OnGUI = OnGUI;
-            modEntry.OnSaveGUI = OnSaveGUI;
-
-            new Harmony(modEntry.Info.Id).PatchAll(Assembly.GetExecutingAssembly());
+            modEntry.OnSaveGUI = OnSaveGUI;            
 
             return true;
         }
 
         public static bool OnToggle(UnityModManager.ModEntry modEntry, bool value)
         {
-#if DEBUG
-            FileLog.Log("Value passed to OnToggle is " + value);
-#endif
             enabled = value;
-#if DEBUG
-            if (enabled)
-                FileLog.Log("Enabled");
-            else FileLog.Log("Not enabled");
-#endif
             return true;
         }
 
@@ -51,13 +43,26 @@ namespace MissionMultipliers
             GUILayout.BeginHorizontal();
             GUILayout.Label("Mission Pay Multiplier", GUILayout.ExpandWidth(false));
             settings.MissionPayMultiplier = GUILayout.HorizontalSlider(settings.MissionPayMultiplier, 1.0f, 50.0f);
-            GUILayout.Label(settings.MissionPayMultiplier.ToString("0.00"), GUILayout.ExpandWidth(false));
+            GUILayout.Label(settings.MissionPayMultiplier.ToString("0"), GUILayout.ExpandWidth(false));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Reset", GUILayout.ExpandWidth(false)))
             {
                 settings.MissionPayMultiplier = 1.0f;
+            }
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Mission Reputation Multiplier", GUILayout.ExpandWidth(false));
+            settings.MissionRepMultiplier = GUILayout.HorizontalSlider(settings.MissionRepMultiplier, 1.0f, 50.0f);
+            GUILayout.Label(settings.MissionRepMultiplier.ToString("0"), GUILayout.ExpandWidth(false));
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("Reset", GUILayout.ExpandWidth(false)))
+            {
+                settings.MissionRepMultiplier = 1.0f;
             }
             GUILayout.EndHorizontal();
         }

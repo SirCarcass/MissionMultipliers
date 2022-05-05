@@ -12,6 +12,7 @@ namespace MissionMultipliers
     public class MissionMultiplierSettings : UnityModManager.ModSettings
     {
         public float MissionPayMultiplier = 1.0f;
+        public float MissionRepMultiplier = 1.0f;
 
         public override void Save(UnityModManager.ModEntry modEntry)
         {
