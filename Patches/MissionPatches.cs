@@ -17,7 +17,6 @@ namespace MissionMultipliers.Patches
 #if DEBUG
         [HarmonyDebug]
 #endif  
-
         public static class GetDeliveryRepPatch
         {
             [HarmonyPostfix]

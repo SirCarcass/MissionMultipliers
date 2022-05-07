@@ -43,7 +43,7 @@ namespace MissionMultipliers
             GUILayout.BeginHorizontal();
             GUILayout.Label("Mission Pay Multiplier", GUILayout.ExpandWidth(false));
             settings.MissionPayMultiplier = GUILayout.HorizontalSlider(settings.MissionPayMultiplier, 1.0f, 50.0f);
-            GUILayout.Label(settings.MissionPayMultiplier.ToString("0"), GUILayout.ExpandWidth(false));
+            GUILayout.Label(settings.MissionPayMultiplier.ToString("0.0"), GUILayout.ExpandWidth(false));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
@@ -56,7 +56,7 @@ namespace MissionMultipliers
             GUILayout.BeginHorizontal();
             GUILayout.Label("Mission Reputation Multiplier", GUILayout.ExpandWidth(false));
             settings.MissionRepMultiplier = GUILayout.HorizontalSlider(settings.MissionRepMultiplier, 1.0f, 50.0f);
-            GUILayout.Label(settings.MissionRepMultiplier.ToString("0"), GUILayout.ExpandWidth(false));
+            GUILayout.Label(settings.MissionRepMultiplier.ToString("0.0"), GUILayout.ExpandWidth(false));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
