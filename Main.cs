@@ -19,7 +19,7 @@ namespace MissionMultipliers
 
         public static bool Load(UnityModManager.ModEntry modEntry)
         {
-            new Harmony(modEntry.Info.Id).PatchAll(Assembly.GetExecutingAssembly());
+            //new Harmony(modEntry.Info.Id).PatchAll(Assembly.GetExecutingAssembly());
 
             mod = modEntry;
 
@@ -27,7 +27,9 @@ namespace MissionMultipliers
 
             modEntry.OnToggle = OnToggle;
             modEntry.OnGUI = OnGUI;
-            modEntry.OnSaveGUI = OnSaveGUI;            
+            modEntry.OnSaveGUI = OnSaveGUI;
+
+            new Harmony(modEntry.Info.Id).PatchAll(Assembly.GetExecutingAssembly());
 
             return true;
         }
