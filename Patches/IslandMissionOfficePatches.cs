@@ -27,7 +27,7 @@ namespace MissionMultipliers.Patches
 
                 //Multiplier insertion
                 int insertionIndex = -1;
-                
+
                 for (int i = 0; i < codes.Count; i++)
                 {
 #if DEBUG

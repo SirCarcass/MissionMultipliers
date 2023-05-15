@@ -18,5 +18,5 @@ namespace MissionMultipliers
         {
             Save(this, modEntry);
         }
-    }    
+    }
 }

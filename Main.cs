@@ -72,6 +72,6 @@ namespace MissionMultipliers
         public static void OnSaveGUI(UnityModManager.ModEntry modEntry)
         {
             settings.Save(modEntry);
-        }        
+        }
     }
 }
