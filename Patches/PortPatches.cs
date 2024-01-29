@@ -20,6 +20,7 @@ namespace MissionMultipliers.Patches
         public static class GetTotalPricePatch
         {
             [HarmonyPostfix]
+#if BUILD_UMM
             public static void Postfix(ref int __result)
             {
                 if (!Main.enabled) return;
@@ -28,6 +29,15 @@ namespace MissionMultipliers.Patches
 
                 return;
             }
+#endif
+#if BUILD_BEPINEX
+            public static void Postfix(ref int __result)
+            {
+                __result = __result * MissionMultipliersMain.instance.missionPayMultiplier.Value;
+
+                return;
+            }
+#endif
         }
     }
 }

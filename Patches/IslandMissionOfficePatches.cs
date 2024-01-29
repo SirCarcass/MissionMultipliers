@@ -45,7 +45,12 @@ namespace MissionMultipliers.Patches
 
                 var instructionsToInsert = new List<CodeInstruction>();
 
+#if BUILD_BEPINEX
+                instructionsToInsert.Add(new CodeInstruction(OpCodes.Ldc_I4, MissionMultipliersMain.instance.missionPayMultiplier.Value));  //Ldc_R4 for float
+#endif
+#if BUILD_UMM
                 instructionsToInsert.Add(new CodeInstruction(OpCodes.Ldc_I4, (int)Main.settings.MissionPayMultiplier));  //Ldc_R4 for float
+#endif
                 instructionsToInsert.Add(new CodeInstruction(OpCodes.Mul));
 
                 if (insertionIndex != -1)
