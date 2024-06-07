@@ -16,8 +16,7 @@ using BepInEx.Logging;
 #endif
 
 namespace MissionMultipliers
-{
-
+{    
 #if BUILD_UMM
 
     public static class Main
