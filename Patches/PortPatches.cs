@@ -33,7 +33,7 @@ namespace MissionMultipliers.Patches
 #if BUILD_BEPINEX
             public static void Postfix(ref int __result)
             {
-                __result = __result * MissionMultipliersMain.instance.missionPayMultiplier.Value;
+                __result = __result * MissionMultipliersMain.instance.cargoMissionPayMultiplier.Value;
 
                 return;
             }

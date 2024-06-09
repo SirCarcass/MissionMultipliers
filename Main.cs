@@ -92,11 +92,12 @@ namespace MissionMultipliers
     {
         public const string GUID = "com.sircarcass.missionmultipliers";
         public const string NAME = "Mission Multipliers";
-        public const string VERSION = "3.0.0";
+        public const string VERSION = "3.1.0";
 
         internal static ManualLogSource logSource;
 
-        internal ConfigEntry<int> missionPayMultiplier;
+        internal ConfigEntry<int> cargoMissionPayMultiplier;
+        internal ConfigEntry<int> mailMissionPayMultiplier;
         internal ConfigEntry<int> missionRepMultiplier;
 
         internal static MissionMultipliersMain instance;
@@ -106,7 +107,8 @@ namespace MissionMultipliers
             instance = this;
             logSource = Logger;
             
-            missionPayMultiplier = Config.Bind("Multipliers", "Mission Pay Multiplier", 1, new ConfigDescription("Multiplier for generated mission pay.  Doesn't affect accepted missions, only newly generated missions.  Changes to multiplier require restarting the game.", new AcceptableValueRange<int>(1, 100), new ConfigurationManagerAttributes { ShowRangeAsPercent = false}));
+            cargoMissionPayMultiplier = Config.Bind("Multipliers", "Cargo Mission Pay Multiplier", 1, new ConfigDescription("Multiplier for generated mission pay.  Doesn't affect accepted missions, only newly generated missions.  Changes to multiplier require restarting the game.", new AcceptableValueRange<int>(1, 100), new ConfigurationManagerAttributes { ShowRangeAsPercent = false}));
+            mailMissionPayMultiplier = Config.Bind("Multipliers", "Mail Mission Pay Multiplier", 1, new ConfigDescription("Multiplier for generated mission pay.  Doesn't affect accepted missions, only newly generated missions.  Changes to multiplier require restarting the game.", new AcceptableValueRange<int>(1, 100), new ConfigurationManagerAttributes { ShowRangeAsPercent = false }));
             missionRepMultiplier = Config.Bind("Multipliers", "Mission Reputation Multiplier", 1, new ConfigDescription("Multiplier for reputation reward when turning in cargo for a mission.  Changes to multiplier require restarting the game.", new AcceptableValueRange<int>(1,100), new ConfigurationManagerAttributes { ShowRangeAsPercent = false }));
 
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), GUID);            
