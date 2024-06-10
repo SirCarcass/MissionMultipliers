@@ -67,6 +67,14 @@ namespace MissionMultipliers.Patches
 
                 }
 
+#if DEBUG
+                FileLog.Log("================================================");
+                FileLog.Log("List of CargoMission opcodes after insertion");
+                FileLog.Log("================================================");
+                for (int i = 0; i < codes.Count; i++)
+                    FileLog.Log("codes[" + i + "].opcode: " + codes[i].opcode + ", codes[" + i + "].operand: " + codes[i].operand);
+#endif
+
                 return codes;
             }
         }
